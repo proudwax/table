@@ -1,0 +1,32 @@
+<app-table matSort [dataSource]="dataSource" [trackBy]="trackByFn">
+  <ng-container col="symbol" [colWidth]="170">
+    <th *headerCell mat-sort-header="symbol">Symbol</th>
+    <td *headerCell>Summary Symbol</td>
+    <td class="ertert" *virtualCell="let item">
+      <!-- <span>{{ item.symbol }}</span> -->
+      <span *cellChanger="item.symbol; isEdit: item._isEditing">{{ item.symbol }}</span>
+    </td>
+  </ng-container>
+  <ng-container col="name">
+    <th *headerCell mat-sort-header="name">Name</th>
+    <td *headerCell>Name</td>
+    <td *virtualCell="let item">{{ item.name }}</td>
+  </ng-container>
+  <ng-container col="weight"  [colWidth]="340">
+    <th *headerCell mat-sort-header="weight">Weight</th>
+    <td *headerCell>Weight</td>
+    <td class="my-class" *virtualCell="let item">
+      <span *cellChanger="item.weight; isEdit: item._isEditing">{{ item.weight }}</span>
+    </td>
+  </ng-container>
+  <ng-container col="position">
+    <th *headerCell mat-sort-header="position">Position</th>
+    <td *headerCell>position</td>
+    <td class="my-class" *virtualCell="let item"><span>{{ item.position }}</span></td>
+  </ng-container>
+
+  <tr class="my-table-row1" [rowChanger]="row" [ngClass]="{'odd': odd}" row *virtualRow="let row; columns: columns; height: 50; let odd = odd"></tr>
+
+  <tr class="header" header-row *headerRow="let cells; columns: columns; sticky: true"></tr>
+
+</app-table>

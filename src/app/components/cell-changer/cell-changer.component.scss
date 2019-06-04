@@ -1,0 +1,39 @@
+
+:host {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+.input {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  height: 27px;
+
+  padding-left: 3px;
+  padding-right: 3px;
+  margin: 1px;
+  text-align: center;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+ 
+  outline: 0;
+  border-radius: 5px;
+  border: 1px solid;
+
+  &:focus {
+    border-color: red;
+  }
+}

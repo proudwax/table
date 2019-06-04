@@ -1,0 +1,53 @@
+<table *ngIf="headerRow.sticky" #headerSticky class="table table_sticky">
+  <ng-container *ngTemplateOutlet="colgroup"></ng-container>
+
+  <ng-container *ngTemplateOutlet="header"></ng-container>
+</table>
+
+<cdk-virtual-scroll-viewport
+  [itemSize]="virtualScrollItemSize"
+  class="ps virtual-scroll-viewport"
+  [ngStyle]="{ height: tableHeight + 'px' }"
+  [perfectScrollbar]="configPerfectScroll"
+>
+  <table>
+    <ng-container *ngTemplateOutlet="colgroup"></ng-container>
+
+    <ng-container *ngIf="!headerRow.sticky">
+      <ng-container *ngTemplateOutlet="header"></ng-container>
+    </ng-container>
+
+    <ng-container
+      *cdkVirtualFor="
+        let item of dataSource;
+        let index = index;
+        let count = count;
+        let first = first;
+        let last = last;
+        let even = even;
+        let odd = odd;
+        trackBy: trackBy
+      "
+    >
+      <ng-container [rowOutlet]="{
+                data: item,
+                rows: virtualRows,
+                index: index,
+                count: count,
+                first: first,
+                last: last,
+                even: even,
+                odd: odd}"></ng-container>
+    </ng-container>
+  </table>
+</cdk-virtual-scroll-viewport>
+
+<ng-template #header>
+  <ng-container headerRowOutlet></ng-container>
+</ng-template>
+
+<ng-template #colgroup>
+  <colgroup>
+    <col *ngFor="let width of colWidth" [attr.width]="width" />
+  </colgroup>
+</ng-template>
